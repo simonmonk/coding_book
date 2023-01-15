@@ -1,0 +1,64 @@
+{% verbatim %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+   
+    <title>Contacts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="vapp">
+        <h1>Contacts</h1>
+
+        <div class="list-group">
+            <a v-for="contact in contacts" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{contact.fields.first_name}} {{contact.fields.surname}}</h5>
+                </div>
+                <p class="mb-1">{{contact.fields.email}} {{contact.fields.dob}}</p>
+            </a>
+        </div>
+        <div>
+            <button class="btn btn-primary" v-on:click="load_items">Refresh</button>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#vapp',
+            data: {
+                contacts: []
+            },
+            mounted: function () {
+                this.load_items();
+            },
+            methods: {
+                load_items: function () {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("GET", "/contacts/list");
+                    xhr.send();
+                    xhr.responseType = "json";
+                    xhr.onload = () => {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            const data = xhr.response;
+                            this.contacts = data;
+                        } else {
+                            console.log(`Error: ${xhr.status}`);
+                        }
+                    };
+                },
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+{% endverbatim %}
