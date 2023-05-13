@@ -4,7 +4,7 @@ num_titles = len(titles)
 while True:
     index_str = input('Enter index number: ')
     index = int(index_str)
-    if index >= 0 and index < len(titles):
+    if index >= 0 and index < num_titles:
         print(titles[index])
     else:
-        print('Index must be between 0 and ' + str(num_titles))
+        print('Index must be between 0 and ' + str(num_titles - 1))
