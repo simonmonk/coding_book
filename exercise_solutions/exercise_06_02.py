@@ -25,7 +25,7 @@ def play_game():
     while True:
         score = score_hand(hand)
         display_hand(hand)
-        action = input('t-twist or s-strick: ')
+        action = input('t-twist or s-stick: ')
         if action == 't':
             if len(deck.cards) < 1:
                 print('Run out of cards!')

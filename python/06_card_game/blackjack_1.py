@@ -8,7 +8,7 @@ def play_game():
     deck.deal(2, hand)
     while True:
         print(hand)
-        action = input('t-twist or s-strick: ')
+        action = input('t-twist or s-stick: ')
         if action == 't':
             deck.deal(1, hand)
         elif action == 's':

@@ -27,7 +27,7 @@ def play_game():
     while True:
         score = score_hand(hand)
         display_hand(hand)
-        action = input('t-twist or s-strick: ')
+        action = input('t-twist or s-stick: ')
         if action == 't':
             deck.deal(1, hand)
             score = score_hand(hand)
